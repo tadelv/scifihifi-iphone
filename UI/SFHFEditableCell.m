@@ -46,10 +46,11 @@
 }
 
 - (void) layoutSubviews {
-	[self.label sizeToFit];
-	self.label.frame = CGRectMake(self.contentView.bounds.origin.x + 20, self.contentView.bounds.origin.y + 12, self.label.frame.size.width, self.label.frame.size.height);
+	[super layoutSubviews];
+	[self.textLabel sizeToFit];
+	self.textLabel.frame = CGRectMake(self.contentView.bounds.origin.x + 10, self.contentView.bounds.origin.y + 12, self.textLabel.frame.size.width, self.textLabel.frame.size.height);
 	
-    self.textField.frame = CGRectMake(self.label.frame.origin.x + self.label.frame.size.width + 8, self.contentView.bounds.origin.y, self.contentView.bounds.size.width - self.label.frame.size.width - 40, self.contentView.bounds.size.height);
+    self.textField.frame = CGRectMake(self.textLabel.frame.origin.x + self.textLabel.frame.size.width + 15, self.contentView.bounds.origin.y, self.contentView.bounds.size.width - self.textLabel.frame.size.width - 40, self.contentView.bounds.size.height);
 }
 
 - (void) setLabelText: (NSString *) labelText andPlaceholderText: (NSString *) placeholderText {
