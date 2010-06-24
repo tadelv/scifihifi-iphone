@@ -29,24 +29,20 @@
 @implementation SFHFEditableCell
 
 @synthesize textField = m_textField;
-@synthesize label = m_label;
 
-- (id) initWithFrame: (CGRect)frame reuseIdentifier: (NSString *) reuseIdentifier delegate: (id) delegate {
-    if (self = [super initWithFrame: frame reuseIdentifier: reuseIdentifier]) {
-        m_label = [[UILabel alloc] initWithFrame: CGRectZero];
-		m_label.font = [UIFont boldSystemFontOfSize: 16.0];
-		m_label.textColor = [UIColor darkTextColor];
-		[self addSubview: m_label];
-		
-		m_textField = [[UITextField alloc] initWithFrame:CGRectZero];
+- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate: (id) delegate {
+	if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+		self.textLabel.font = [UIFont boldSystemFontOfSize:16.0];
+		self.textLabel.textColor = [UIColor darkTextColor];
+		m_textField = [[UITextField alloc] init];
         m_textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         m_textField.font = [UIFont systemFontOfSize:16.0];
         m_textField.textColor = [UIColor darkTextColor];
 		m_textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 		m_textField.delegate = delegate;
         [self addSubview: m_textField];
-    }
-    return self;
+	}
+	return self;
 }
 
 - (void) layoutSubviews {
@@ -57,7 +53,7 @@
 }
 
 - (void) setLabelText: (NSString *) labelText andPlaceholderText: (NSString *) placeholderText {
-	self.label.text = labelText;
+	self.textLabel.text = labelText;
 	
 	self.textField.placeholder = placeholderText;
 	
@@ -76,7 +72,6 @@
 
 - (void) dealloc {
     [m_textField release];
-	[m_label release];
     [super dealloc];
 }
 
